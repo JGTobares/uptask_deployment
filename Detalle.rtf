@@ -1,0 +1,85 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww14060\viewh9180\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Bootcamp NODEJS - PILIS CTC \
+\
+-	Primer proyecto UpTask con NODE JS y MVC\
+\
+- Se crea directorio de proyecto, se instala: \'93node\'94 y \'93npm\'94. Se instalan las dependencias: \'93\'94express\'94 (. Ppm Install \'97save express )  y \'93nodemon\'94 (.npm Install \'97save-dev nodemon ) se coloca \'93dev\'94 para indicar que ser\'e1 una dependencia de desarrollo, la utilidad de nodemon es cargar nuevos cambios reinici\'e1ndo y actualizando el servidor \
+\
+- Se crea nuevo archivo \'edndex.js, dentro se crea e iniciativa el servidor. Luego se crea un script de inicio denominado \'93start\'94 de nodemon apuntando al archivo \'edndex.js. En consola se inicia el servidor con el comando \'93npm run start\'94 donde la ultima palabra es el nombre del script, en este caso Start\
+\
+- Al emplear MVC, para el route de las paginas, se crea nuevo directorio \'93routes\'94 con un archivo \'93\'94index.js para configurar express router, se crean rutas de paginas y se importan sobre el index.js del proyecto\
+\
+- Se inicia con la implementaci\'f3n del Controller, creando un nuevo directorio \'93 controllers\'94 y un archivo \'93proyectoControllers\'94, en el cual se define que se enviara al router para mostrar en la Vista, en este ejemplo se reemplazan las func arrow por el controles en el index del router.\
+\
+- Se inicia con la implementaci\'f3n del View, atraves de un Template Engine para Express denominado PUG (puede ser reemplazado por Angular, React o Fue). Sobre el index.js del proyecto se habilita PUG como View Engine y se crea un nuevo directorio denominado \'93\'94views. Se crea nueva const \'93path\'94 una librer\'eda que lee el filesystem y setea las vistas. Dentro del controles se devuelve sobre el resolver un render para mostrar el archivo pue\
+\
+- Se inicia con la implementaci\'f3n de un Master Page, se incluye la carpeta public con los estilos css \
+Y se declaran en el index el directorio como archivos estaticos. Dentro del layout pug las clases con css se incluyen con el punto y los id con #\
+\
+- Se crea nueva secci\'f3n \'93Nuevo Proyecto\'94, primero se debe crear el nuevo route, donde el primer argumento es el nombre de la View.pug y despu\'e9s la funci\'f3n que utiliza el controles, se debe definir la funci\'f3n arrow en el controles y crear el nuevo View \'93nuevoProyecto.pug\'94\
+\
+- Se crea un nuevo Formulario, se crean dos nuevos campos para ingresar un nombre de proyecto y un bot\'f3n para generar el m\'e9todo POST, es necesario agregar el action y method dentro del form y ademas agregar el route sobre el archivo de rutas.\
+Para poder leer formularios es necesario habilitar la librer\'eda bodyParser en el index.js del proyecto, luego mediante destructuring tomamos los input de los campos seg\'fan el \'93\'94name\'94\'94asignado en la vista, luego se lo env\'eda mediante vender a pantalla con un mensaje de error en caso de colocar un campo vac\'edo. En la vista de la pagina nuevo proyecto, se emplea la validaci\'f3n y el recorrido del arreglo con errores.\
+\
+A FUTURO IMPLEMENTAR EXPRESS VALIDATION\
+\
+- Para el almacenamiento de datos se emplea MySQL de Oracle, en la pagina oficial descargar la versi\'f3n Community que es gratuita, la versi\'f3n mysql 8.0.14\
+Para iniciar sesi\'f3n en mysql se debe incluir el comando: mysql -u root -p\'94 \
+- Para visualizar los datos de nuestras tablas se emplea el software TablePlus, al ser gratis es posible tener en tiempo real abiertos dos pesta\'f1as y dos conexiones simult\'e1neas a la db. Se genera nueva conexi\'f3n a MySQL, con el usuario (root) y pass que se haya seseado en MySQL\
+\
+- Se incluye un ORM dentro del proyecto para la conexi\'f3n entre el Model y la DB, en caso de Node se utiliza Sequelize, Mongoose. Para este ejemplo utilizaremos SEQUELIZE, con el siguiente comando en consola\
+\pard\pardeftab720\partightenfactor0
+\cf0 \'93Npm install \'97save sequelize-cli\'94\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0  \'93npm Install \'97save mysql2 sequelize\'94. \
+Se crean dentro del proyecto un directorio \'93config.js\'94 y dentro un archivo \'93db.js\'94\
+\
+- Se crea nuevo directorio \'93models\'94 y un archivo \'93Proyectos.js\'94, dentro se define la primer tabla de la base de datos denominada proyectos, con las columnas id, nombre y url, se genera la conexi\'f3n a la base de datos en el archivo index.js del directorio raiz. Dentro del index se importa el Modelo y reemplazando el comando authenticate() -> por sync() se crean autom\'e1ticamente las tablas seg\'fan el modelo utilizado. \
+\
+- Se procede a modificar el controlador, importando el modelo para insertar en la base de datos la informaci\'f3n proveniente de la vista e incluyendo nuevos comandos sobre el \'93else\'94 de nuevoProyecto\
+\
+- Se reemplazan consultas a la DB con ASYNC/AWAIT para mejorar en la performance del proyecto, se modifica el m\'e9todo del controlador incluyendo async al principio del req,res y await al momento de insertar el registro, luego se redirige al home.\
+\
+- Se incluye la librer\'eda \'93express validator\'94 con el comando \'93npm Install \'97save express-validator\'94, generalmente las validaciones no se emplean sobre el controlador, sino mas bien sobre el router, se procede a realizar la sanitizacion del input con varios m\'e9todos definidos en el check API de EXPRESS VALIDATOR, se agregan nuevos m\'e9todos sobre el router, precisamente sobre el comando POST.\
+\
+- Se crean URL para cada uno de los proyectos a crear,  por lo cual se instala el paquete SLUG con el comando \'93npm Install \'97save slug\'94, slug toma una cadena de texto y permite crear una url, dentro del controlador primero importamos slug y luego al momento de insertar en la DB se modifica el m\'e9todo de await.\
+\
+- En caso de que se inserten dos nombres y url iguales, cada url deber\'eda ser \'fanica, se emplean Hooks dentro del model se debe importar slug y quitarlo del controlador. Para evitar el duplicado de url, se generan id \'fanicos para cada direcci\'f3n con el paquete \'93shortid\'94.\
+\
+- Para consultar a la DB y mostrar en la vista, dentro del controlador sobre la pagina Home, m\'e9todo proyectoHome, se emplea el m\'e9todo \'93findAll()\'94 y luego se le pasa al render. Se emplea asen/await sobre el m\'e9todo para mejorar performance. Dentro del c\'f3digo pug de layout.pug se valida que hayan proyecto y se imprimen iterando el array\
+\
+- Para el link de las url, se emplea un metido similar al var-dump de php y un middleware. Se crea nuevo archivo helpers.js para definir m\'e9todos a utilizar dentro de todo el proyecto por diferentes componentes. Dentro del index del proyecto se importa helpers y se define el m\'e9todo como global con la funci\'f3n locals sobre el response con res.locals lo que hace que vardump este disponible como variable global\
+\
+- Se editan todos los m\'e9todos del controlador agregando las consultas sobre la DB ya que es usada en todos seg\'fan el dise\'f1o del proyecto, para evitar errores en el c\'f3digo.\
+\
+- Se emplean promises para las consultas as\'edncronas no dependientes, con destructuring para optimizar el c\'f3digo\
+- Se crea nueva funcionalidad de actualizar el nombre del proyecto creando un nuevo controlador, se emplea mixins para incluir paginas pug dentro de otras.\
+\
+- Para eliminar los proyectos empleamos JS, Axios, Babel y WebPack. Se instala Babel Loader for WebPack con el comando \'93npm install -D babel-loader @babel/core @babel/preset-env webpack\'94 y \'93npm Install \'97save concurrently\'94, se crea nuevo archivo de config para webpack\
+\
+- Se agrega nuevo script para ejecutar webpack sobre el package.json con el comando start\
+\
+- Se instalan dos paquetes arios y sweetalert con el comando \'93npm Install \'97save axios sweetalert2\'94, se crea nuevo directorio sobre public>js> modulo y dentro un archivo Proyectos.js, al configurar WebPack se emplea como archivo de entrada app.js por lo cual todo c\'f3digo js que se escriba en este archivo se puede utilizar en todo el proyecto trav\'e9s del bundle.\
+\
+- Se crea nuevo Modelo de Tareas, sobre el dir modelos se agrega archivo llamado Tareas.js, para vincular tablas en sql se debe importar en el children, la tabla padre e insertar el m\'e9todo \'93Tareas.belongsTo(tablaPadre)\'94\
+\
+- Se crea formulario para crear Tareas sobre cada Proyecto, \
+COMPLETAR DESARROLLO\
+\
+- Se instala nueva librer\'eda para hashear los pass de los usuarios al crear la cuenta, con el comando \'94npm Install \'97save bcrypt-nodejs\'94\
+- Se instala libreria para alerts en el caso de validar correos con sequelize de forma autom\'e1tica, con el comando \'93npm Install \'97save connect-flash\'94\
+- Se instala librer\'eda para session necesaria para flash, con el comando \'93npm Install \'97save cookie-parser express-session\'94, para auth usuarios y mantener logradas sesiones.\
+- Se crea el formulario para iniciar sesi\'f3n en el directorio vistas \'91iniciarSesion.pug\'92\
+- Se instala libreria PassPort para la autenticaci\'f3n de usuarios con diferentes plataformas, en el caso del proyecto se usa locals, con el comando \'93npm Install \'97save passport\'94 y npm install \'97save passport-local\
+\
+- Se instala la librer\'eda nodemailer para enviar correos, con el comando \'93npm Install \'97save nodemailer juice html-to-text\'94 y una cuenta gratis en el servicio de test de emails MailTrap, se crea nuevo archivo \'93email.js\'94 dentro del directorio config\
+\
+- Se instala la librer\'eda doten para declarar variables de entorno, con el comando \'93npm Install \'97save doten\'94\
+\
+}
